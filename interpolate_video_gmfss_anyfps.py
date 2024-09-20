@@ -23,7 +23,7 @@ global_size = (1920, 1080)  # frame output resolution
 hwaccel = True  # Use hardware acceleration video encoder
 
 enable_scdet = True  # enable scene detection
-scdet_threshold = 50  # scene detection threshold(The smaller the value, the more sensitive)
+scdet_threshold = 100  # scene detection threshold(The smaller the value, the more sensitive)
 
 check_scene = lambda x1, x2: np.abs(x1 - x2).mean() > scdet_threshold if enable_scdet else False
 
