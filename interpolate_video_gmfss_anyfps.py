@@ -25,7 +25,7 @@ hwaccel = True  # Use hardware acceleration video encoder
 enable_scdet = True  # enable scene detection
 scdet_threshold = 50  # scene detection threshold(The smaller the value, the more sensitive)
 
-scene_detection = lambda x1, x2: np.abs(x1 - x2).mean() > scdet_threshold if enable_scdet else False
+check_scene = lambda x1, x2: np.abs(x1 - x2).mean() > scdet_threshold if enable_scdet else False
 
 
 # deprecated
@@ -232,7 +232,7 @@ def calc_t(_idx):
 
 # head
 mt, zt, pt = calc_t(idx)
-right_scene = scene_detection.check_scene(i0, i1)
+right_scene = check_scene(i0, i1)
 left_scene = right_scene
 output = make_inference(I0, I0, I1, mt, zt, pt, False, right_scene, scale)
 for x in output:
@@ -246,7 +246,7 @@ while True:
     I2 = load_image(i2, scale)
 
     mt, zt, pt = calc_t(idx)
-    right_scene = scene_detection.check_scene(i1, i2)
+    right_scene = check_scene(i1, i2)
     output = make_inference(I0, I1, I2, mt, zt, pt, left_scene, right_scene, scale)
     for x in output:
         put(x)
