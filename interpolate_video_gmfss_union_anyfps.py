@@ -9,7 +9,6 @@ from tqdm import tqdm
 import torch
 import numpy as np
 import time
-from scdet import SvfiTransitionDetection
 from models.model_pg104.softsplat import softsplat as warp
 from models.model_pg104.GMFSS import Model
 from models.rife_422_lite.IFNet_HDv3 import IFNet
@@ -25,15 +24,9 @@ global_size = (1920, 1080)  # frame output resolution
 hwaccel = True  # Use hardware acceleration video encoder
 
 enable_scdet = True  # enable scene detection
-scdet_threshold = 12  # scene detection threshold(The smaller the value, the more sensitive)
+scdet_threshold = 50  # scene detection threshold(The smaller the value, the more sensitive)
 
-scene_detection = SvfiTransitionDetection(os.path.dirname(output), 4,
-                                          scdet_threshold=scdet_threshold,
-                                          pure_scene_threshold=10,
-                                          no_scdet=not enable_scdet,
-                                          use_fixed_scdet=False,
-                                          fixed_max_scdet=80,
-                                          scdet_output=False)
+scene_detection = lambda x1, x2: np.abs(x1 - x2).mean() > scdet_threshold if enable_scdet else False
 
 
 class TMapper:

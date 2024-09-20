@@ -15,7 +15,6 @@ warnings.filterwarnings("ignore")
 from models.model_nb222.MetricNet import MetricNet
 from models.model_nb222.softsplat import softsplat as warp
 from models.rife_422_lite.IFNet_HDv3 import IFNet
-from scdet import SvfiTransitionDetection
 from models.FastFlowNet.models.FastFlowNet_v2 import FastFlowNet
 
 input = r'E:\01.mkv'  # input video path
@@ -26,16 +25,9 @@ global_size = (1920, 1080)  # frame output resolution
 hwaccel = True  # Use hardware acceleration video encoder
 
 enable_scdet = True  # enable scene detection
-scdet_threshold = 12  # scene detection threshold(The smaller the value, the more sensitive)
+scdet_threshold = 50  # scene detection threshold(The smaller the value, the more sensitive)
 
-scene_detection = SvfiTransitionDetection(os.path.dirname(output), 4,
-                                          scdet_threshold=scdet_threshold,
-                                          pure_scene_threshold=10,
-                                          no_scdet=not enable_scdet,
-                                          use_fixed_scdet=False,
-                                          fixed_max_scdet=80,
-                                          scdet_output=False)
-
+scene_detection = lambda x1, x2: np.abs(x1 - x2).mean() > scdet_threshold if enable_scdet else False
 
 class TMapper:
     def __init__(self, src=-1., dst=0., times=None):
@@ -284,7 +276,7 @@ def calc_t(_idx: float):
 
 # head
 mt, zt, pt = calc_t(idx)
-right_scene = scene_detection.check_scene(i0, i1)
+right_scene = scene_detection(i0, i1)
 left_scene = right_scene
 output = make_inference(I0, I0, I1, mt, zt, pt, False, right_scene, scale)
 for x in output:
@@ -298,7 +290,7 @@ while True:
     I2 = load_image(i2, scale)
 
     mt, zt, pt = calc_t(idx)
-    right_scene = scene_detection.check_scene(i1, i2)
+    right_scene = scene_detection(i1, i2)
     output = make_inference(I0, I1, I2, mt, zt, pt, left_scene, right_scene, scale)
     for x in output:
         put(x)
