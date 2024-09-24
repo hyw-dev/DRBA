@@ -16,7 +16,12 @@
 
 # 👀Demos Videos
 
-**Coming soon.**
+**[OP「つよがるガール」](https://www.bilibili.com/video/BV1uJtPe9EdY/?share_source=copy_web&vd_source=8a8926eb0f1d5f0f1cab7529c8f51282)**
+
+**[葬送的芙莉莲 NCOP1「勇者」](https://www.bilibili.com/video/BV12QsaeREmr/?share_source=copy_web&vd_source=8a8926eb0f1d5f0f1cab7529c8f51282)**
+
+**[葬送的芙莉莲 NCOP2「放晴」](https://www.bilibili.com/video/BV1RYs8eFE77/?share_source=copy_web&vd_source=8a8926eb0f1d5f0f1cab7529c8f51282)**
+
 
 ## 🔧Dependencies
 **Set up the environment for the following repository**
