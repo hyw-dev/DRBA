@@ -82,7 +82,7 @@ def convert(param):
 
 
 ifnet = IFNet().cuda().eval()
-ifnet.load_state_dict(convert(torch.load(r'weights\train_log_rife_422_lite\rife.pkl', map_location='cpu')), False)
+ifnet.load_state_dict(convert(torch.load(r'weights\train_log_rife_422_lite\flownet.pkl', map_location='cpu')), False)
 flownet = FastFlowNet().cuda().eval()
 flownet.load_state_dict(torch.load(r'weights\train_log_rife_422_lite\fastflownet_ft_sintel.pth', map_location='cpu'))
 metricnet = MetricNet().cuda().eval()
