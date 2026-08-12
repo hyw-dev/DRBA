@@ -78,3 +78,6 @@ DRBA consists two parts('DRM Calculation' and 'Applying DRM to Frame Interpolati
 Optical Flow: [GMFlow](https://github.com/haofeixu/gmflow)
 
 Video Interpolation: [Practical-RIFE](https://github.com/hzwer/Practical-RIFE) [GMFSS](https://github.com/98mxr/GMFSS_Fortuna) [MultiPassDedup](https://github.com/routineLife1/MultiPassDedup)
+
+## Acknowledgment
+This project is sponsored by [SVFI](https://steamcommunity.com/app/1692080) [Development Team](https://github.com/Justin62628/Squirrel-RIFE) 
